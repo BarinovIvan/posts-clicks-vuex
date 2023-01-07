@@ -1,18 +1,31 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <button @click="incrementClick()">Click</button>
+    <h2>{{ getClicks }}</h2>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'HomeView',
   components: {
     HelloWorld
+  },
+  methods: {
+    ...mapActions('clickModule', ['incrementClick'])
+  },
+  computed: {
+    ...mapGetters('clickModule', ['getClicks'])
   }
 }
 </script>
+
+<style>
+  button {
+    margin-bottom: 20px;
+  }
+</style>
